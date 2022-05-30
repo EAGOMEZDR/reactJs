@@ -1,7 +1,12 @@
 
-function ItemListContainer(){
-    return(
-        <p> Mensaje de Item List Container</p>
+
+
+const ItemListContainer = (props) => {
+    return (
+        <>
+        {console.log(props)}
+        <p>{props.mensaje}</p>
+        </>
     )
 }
 
