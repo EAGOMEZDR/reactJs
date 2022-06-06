@@ -1,11 +1,26 @@
+import { useEffect, useState } from 'react';
+import ItemList from '../ItemList/ItemList';
+
+const ItemListContainer = () => {
+
+    const[productos, setProductos] = useState ([])
+
+    useEffect(()=>{
+        ItemList()
+        .then((resp) =>{
+            setProductos(resp)
+        })
+        .catch(err => console.log("error"))
+        .finally(()=> console.log())
+
+    }, [])
 
 
-
-const ItemListContainer = (props) => {
     return (
         <>
-        {console.log(props)}
-        <p>{props.mensaje}</p>
+        <div className="main">
+        {productos.map(productos => <div className="cuadradito" key={productos.id}> <li> Modelo: {productos.nombre}. </li><li>Descripcion: {productos.descripcion}. </li><li> Stock: {productos.stock}. </li></div>)}
+        </div>
         </>
     )
 }

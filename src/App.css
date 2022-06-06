@@ -27,3 +27,20 @@
   width: 3vh;
   margin:0 auto;
 }
+
+.cuadradito{
+  height: 25vh;
+  width: 25vh;
+  border: 1px solid black;
+  margin: 3vh;
+}
+
+.cuadradito li{
+  list-style: none;
+  margin: 2vh 2vh;
+}
+
+.main{
+  display:flex;
+  flex-direction: row;
+}
