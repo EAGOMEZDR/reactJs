@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import ItemList from '../ItemList/ItemList';
+import { ItemList } from '../ItemList/ItemList';
 
 const ItemListContainer = () => {
 
@@ -19,7 +19,8 @@ const ItemListContainer = () => {
     return (
         <>
         <div className="main">
-        {productos.map(productos => <div className="cuadradito" key={productos.id}> <li> Modelo: {productos.nombre}. </li><li>Descripcion: {productos.descripcion}. </li><li> Stock: {productos.stock}. </li></div>)}
+        {productos.map(productos => <div className="cuadradito" key={productos.id}> <li> Modelo: {productos.nombre}. </li><li>Descripcion: {productos.descripcion}. </li><li> Stock: {productos.stock}. </li><li>        <button>Detalle</button></li></div>)}
+
         </div>
         </>
     )

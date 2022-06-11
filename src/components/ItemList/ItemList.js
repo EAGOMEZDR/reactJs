@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { productos } from '../Item/Item';
+import {productos, celuDetail} from '../Item/Item';
 
 
-const ItemList = () =>{
+
+export const ItemList = () =>{
 
     return new Promise ((resolve,reject)=>{
         setTimeout(()=>{
@@ -11,7 +11,14 @@ const ItemList = () =>{
     })
 }
 
-export default ItemList;
+export const ItemListDetail =()=>{
+
+    return new Promise ((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve(celuDetail)
+        }, 2000)
+    })
+}
 
 
 
