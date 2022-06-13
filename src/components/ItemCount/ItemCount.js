@@ -11,6 +11,7 @@ function ItemCount({stock, initial, onAdd}) {
         count > initial && modificarCount(count - 1);
     }
 
+
     return(
         <div>
             <h2>{count}</h2>

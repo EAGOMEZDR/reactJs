@@ -1,24 +1,21 @@
-import {productos, celuDetail} from '../Item/Item';
+import {productos} from '../Item/Item';
 
 
 
-export const ItemList = () =>{
+export const ItemList = (id) =>{
 
     return new Promise ((resolve,reject)=>{
         setTimeout(()=>{
-            resolve(productos)
+            if (id) {
+                resolve(productos.find(prod => prod.id === id))              
+            } else {
+                resolve(productos)          
+            }
         }, 2000)
     })
 }
 
-export const ItemListDetail =()=>{
 
-    return new Promise ((resolve,reject)=>{
-        setTimeout(()=>{
-            resolve(celuDetail)
-        }, 2000)
-    })
-}
 
 
 

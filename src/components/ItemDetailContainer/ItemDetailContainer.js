@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { ItemListDetail} from '../ItemList/ItemList';
+import { ItemList } from '../ItemList/ItemList';
+
 
 const ItemDetailContainer = () => {
 
-    const [celuDetail, setCeluDetail] = useState({})
+    const [producto, setProducto] = useState([])
     
     useEffect(() => {
-        ItemListDetail()
-            .then((resp) => setCeluDetail(resp))
+        ItemList("1")
+            .then((resp) => setProducto(resp)) 
             .catch(err => console.log(err))            
     }, [])
     
-    // console.log(celuDetail)
-    
-        
-    return <ItemDetail producto={celuDetail} />
-    
+
+  
+    return <ItemDetail productos={producto} />
+
 }
 export default ItemDetailContainer;
     

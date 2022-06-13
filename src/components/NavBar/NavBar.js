@@ -1,34 +1,24 @@
 import CartWidget from "../CartWidget/CartWidget";
-
+import {Link, NavLink} from 'react-router-dom'
 
 function NavBar() {
   return (
     <>
       <h1 className="titulo">Tienda de celulares</h1>
 
-      <CartWidget />
+      <Link to='/cart'>
+        <CartWidget />
+      </Link>
+
+    <div>
+      <NavLink className="navlink" to="/Apple">Apple</NavLink>
 
 
-    <a className="navBarLink"
-    href="https://www.google.com/"
-    target="_blank"
-    rel="noopener noreferrer">
-    Apple</a>
+      <NavLink className="navlink" to="/Samsung">Samsung</NavLink>
 
 
-    <a className="navBarLink"
-    href="https://www.google.com/"
-    target="_blank"
-    rel="noopener noreferrer">
-    Samsung</a>
-
-
-    <a className="navBarLink"
-    href="https://www.google.com/"
-    target="_blank"
-    rel="noopener noreferrer">
-    XIaomi</a>
-
+      <NavLink className="navlink" to="/Xiaomi">Xiaomi</NavLink>
+    </div>
     </>
     
   )

@@ -1,13 +1,12 @@
-const ItemDetail = ({producto}) => {
-    console.log(producto)
-    console.log(producto.nombre)
+const ItemDetail = ({productos}) => {
 
+    console.log(productos)
     return (
-        <div>
-           <h2>Nombre: {producto.nombre}</h2>
-           <h2>Stock: {producto.stock}</h2>
-           <h2>Precio: {producto.precio}</h2>
-        </div>
+        <>
+        <h2>Nombre: {productos.nombre}</h2>
+        <h3>Precio: {productos.precio}</h3>
+        <h3>Stock: {productos.stock}</h3>
+        </>
     )
 }
 
