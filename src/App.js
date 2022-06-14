@@ -19,7 +19,8 @@ function App() {
 
       <Routes>
         <Route index path="/" element={<ItemListContainer/>} />
-        <Route  path="/detalle" element={<ItemDetailContainer/>} />
+        <Route path="/categoria/:categoriaId" element={<ItemListContainer/>} />
+        <Route  path="/detalle/:id" element={<ItemDetailContainer/>} />
         <Route  path='/cart' element={ <ItemCount stock={15} initial={1} onAdd={"0"} />} />
         {/* <Route  path='*' element={<Navigate to="/" />} /> */}
       </Routes>

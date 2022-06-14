@@ -40,7 +40,7 @@
   margin: 2vh 2vh;
 }
 
-.main{
+.cuadrados{
   display:flex;
   flex-direction: row;
 }

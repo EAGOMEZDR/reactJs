@@ -1,3 +1,5 @@
+
+
 const ItemDetail = ({productos}) => {
 
     console.log(productos)
