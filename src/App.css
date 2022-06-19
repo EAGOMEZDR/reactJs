@@ -1,0 +1,46 @@
+.navlink{
+  display:block;
+  text-align: center;
+  background-color: bisque;
+  padding:0 2vh;
+  margin:0 2vh;  
+}
+
+.titulo{
+  background-color: aquamarine;
+  padding:2vh;
+  margin:2vh;
+}
+
+
+.carritoHolder{
+  background-color: rgb(33, 153, 33);
+  height: 5vh;
+  width: 6vh;
+  position:absolute;
+  right:3vh;
+  top:4vh;
+}
+
+.carrito{
+  height: 3vh;
+  width: 3vh;
+  margin:0 auto;
+}
+
+.cuadradito{
+  height: 25vh;
+  width: 25vh;
+  border: 1px solid black;
+  margin: 3vh;
+}
+
+.cuadradito li{
+  list-style: none;
+  margin: 2vh 2vh;
+}
+
+.cuadrados{
+  display:flex;
+  flex-direction: row;
+}
