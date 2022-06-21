@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
@@ -6,12 +6,18 @@ import { Link } from 'react-router-dom';
 
 const BotonCarrito =()=>{
     return (
+        <>
         <Link to='/cart'>
             <button >
                 IR AL CARRITO
             </button>
         </Link>
-
+                <Link to='/'>
+                <button >
+                    SEGUIR COMPRANDO
+                </button>
+            </Link>
+        </>
     )
 }
 
@@ -38,7 +44,7 @@ function ItemCount({stock, initial, onAdd}) {
 
     const add = () =>{         
         onAdd(count)
-        setChecker(false)       
+        setChecker(false)  
     }
 
 

@@ -8,6 +8,7 @@ import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailCont
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import CartWidget from './components/CartWidget/CartWidget';
 import  Cart  from './components/Cart/Cart';
+import { CartContextProvider } from './context/cartContext';
 
 
 
@@ -15,6 +16,7 @@ import  Cart  from './components/Cart/Cart';
 function App() {
   return (
     <>
+    <CartContextProvider>
     <BrowserRouter>
       <NavBar />
 
@@ -29,6 +31,7 @@ function App() {
 
 
     </BrowserRouter>
+    </CartContextProvider>
     </>
   )
 }
