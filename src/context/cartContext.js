@@ -26,7 +26,7 @@ export const CartContextProvider = ({children}) => {
 
     const isInCart=(id)=>{
         console.log("esto es id: " ,id)
-        cart.some(item => item.id === id.id)
+        return cart.some(item => item.id === id.id)
     }
 
     const vaciarCarrito =() =>{
