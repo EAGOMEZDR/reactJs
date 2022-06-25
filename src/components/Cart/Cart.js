@@ -10,39 +10,42 @@ export const BotonBorrar = ({props})=>{
 
 
 const Cart =() =>{
-    const { cart } = useCartContext()
+    const { cart, vaciarCarrito, contador, counter } = useCartContext()
 
-
-
-    let contador = 0
-
-    const BotonBorrar =({props})=>{
-        return <button onClick={props}>VACIAR CARRITO</button>
-    }
     
+    console.log(cart)
 
-    const ingresado =()=>{
-        return alert("Ya ha ingresado este producto")
+    const CartArray =()=>{
+
+        return (<ul>
+        {cart.map(item => 
+     
+     <ul key ={item.id}> 
+    
+         {/* <p>Producto Nº{}</p> */}
+         <li> Articulo: {item.nombre}</li>
+         <li>Precio Unitario:{item.precio}</li>
+         <li>Cantidad: {item.cant}</li>
+         <li>--------------------------</li>
+     </ul>)}
+        </ul>)
     }
+
+
+
 
     return (
         <>
         <div>
-            
-            <ul>
-            {cart.map(item => 
-         
-         <ul key ={item.id}> 
-
-             <p>Producto Nº{contador+=1}</p>
-             <li> Articulo: {item.nombre}</li>
-             <li>Precio Unitario:{item.precio}</li>
-             <li>Cantidad: {item.cant}</li>
-             <li>--------------------------</li>
-         </ul>)}
-            </ul>
+        {cart.lenght === 0? 
+            <div>El carrito esta vacio</div>
+        :
+        <CartArray />}
         </div>
-        <BotonBorrar/>
+        <p>asd</p>
+        <button onClick={vaciarCarrito} >Vaciar Carrito</button>
+
+
 
         </>
     )

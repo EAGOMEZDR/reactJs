@@ -22,6 +22,7 @@ const BotonCarrito =()=>{
 }
 
 const BotonComprar =({props})=>{
+    console.log("props" + props)
     return(
     <button onClick={props} >AGREGAR AL CARRO</button>
 
@@ -57,7 +58,7 @@ function ItemCount({stock, initial, onAdd}) {
             
             {
                 checker=== true ?
-                <BotonComprar props={add} />
+                <button onClick={add}>agregar al carrito</button>
                 :
                 <BotonCarrito/>
             }

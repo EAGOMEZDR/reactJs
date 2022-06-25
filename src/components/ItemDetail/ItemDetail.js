@@ -7,11 +7,14 @@ import ItemCount from "../ItemCount/ItemCount"
 const ItemDetail = ({productos}) => {
 
     const {cart, addToCart} = useContext(CartContext)
+    
 
     const onAdd = (cantidad) =>{
         addToCart({...productos, cant: cantidad})
         console.log(cantidad)
     }
+
+
 
 
     console.log(cart)
