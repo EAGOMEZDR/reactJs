@@ -21,13 +21,13 @@ const BotonCarrito =()=>{
     )
 }
 
-const BotonComprar =({props})=>{
-    console.log("props" + props)
-    return(
-    <button onClick={props} >AGREGAR AL CARRO</button>
+// const BotonComprar =({props})=>{
+//     console.log("props" + props)
+//     return(
+//     <button onClick={props} >AGREGAR AL CARRO</button>
 
-    )
-}
+//     )
+// }
 
 
 

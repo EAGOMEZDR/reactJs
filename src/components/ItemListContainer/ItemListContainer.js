@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ItemList } from '../ItemList/ItemList';
 import {Link, NavLink, useParams} from 'react-router-dom'
+import {addDoc, collection, doc, getDoc, getDocs, getFirestore} from 'firebase/firestore'
 
 const ItemListContainer = () => {
 
@@ -12,27 +13,40 @@ const ItemListContainer = () => {
     console.log(categoriaId)
 
     useEffect(()=>{
-        if (categoriaId){
-            ItemList()
-            .then((resp) =>{
-                setProductos(resp.filter(productos => productos.marca === categoriaId))
-                console.log(productos + "asd")
-                setCargando(false)
-            })
-            .catch(err => console.log("error"))
-            .finally(()=> console.log())            
-        }else {
-            ItemList()
-            .then((resp) =>{
-                setProductos(resp)
-                setCargando(false)
-            })
-            .catch(err => console.log("error"))
-            .finally(()=> console.log())
-        }
+
+        const db = getFirestore()
+        const queryCollection = collection(db, 'productos')
+        getDocs(queryCollection)
+        .then(data => setProductos (data.docs.map(item => ({id: item.id, ...item.data()}) )))
+        .catch(err =>console.log(err))
+        .finally(()=> setCargando(false))
+
+    }, [])
+
+    console.log(productos)
+
+    // useEffect(()=>{
+    //     if (categoriaId){
+    //         ItemList()
+    //         .then((resp) =>{
+    //             setProductos(resp.filter(productos => productos.marca === categoriaId))
+    //             console.log(productos + "asd")
+    //             setCargando(false)
+    //         })
+    //         .catch(err => console.log("error"))
+    //         .finally(()=> console.log())            
+    //     }else {
+    //         ItemList()
+    //         .then((resp) =>{
+    //             setProductos(resp)
+    //             setCargando(false)
+    //         })
+    //         .catch(err => console.log("error"))
+    //         .finally(()=> console.log())
+    //     }
 
 
-    }, [categoriaId])
+    // }, [categoriaId])
 
 
     return (
