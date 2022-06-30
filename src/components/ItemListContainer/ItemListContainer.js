@@ -10,20 +10,30 @@ const ItemListContainer = () => {
 
     const {categoriaId} = useParams()
 
-    console.log(categoriaId)
+    console.log("categoria Id: ", categoriaId)
 
     useEffect(()=>{
 
         const db = getFirestore()
         const queryCollection = collection(db, 'productos')
+        
+
+        if (categoriaId){
+        getDocs(queryCollection)
+        // .then(data => setProductos (data.docs.map(item => ({id: item.id, ...item.data()}) )))
+        .then(data => setProductos (data.filter(item => item.marca === categoriaId )))
+        .catch(err =>console.log(err))
+        .finally(()=> setCargando(false))
+    }else{
         getDocs(queryCollection)
         .then(data => setProductos (data.docs.map(item => ({id: item.id, ...item.data()}) )))
         .catch(err =>console.log(err))
         .finally(()=> setCargando(false))
+        }
 
     }, [])
 
-    console.log(productos)
+    // console.log(productos)
 
     // useEffect(()=>{
     //     if (categoriaId){
@@ -60,7 +70,7 @@ const ItemListContainer = () => {
         }
 
         </div>
-        </>
+        </> 
     )
 }
 

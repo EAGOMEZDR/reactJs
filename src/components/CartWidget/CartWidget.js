@@ -4,15 +4,15 @@ import { useCartContext } from '../../context/cartContext';
 import {numeroDeArticulos} from '../Cart/Cart'
 
 function CartWidget (){
-    const { cart} = useCartContext()
+    const { cartList} = useCartContext()
 
-    console.log(numeroDeArticulos)
+    // console.log(numeroDeArticulos)
     return(
         <>
         <Link to="/cart">
         <button className="carritoHolder" onClick={()=>console.log("ir a cart")}>
          <img src={carritoDeCompras} className="carrito" alt="#" />
-         <div>{numeroDeArticulos(cart)}</div>
+         <div>{numeroDeArticulos(cartList)}</div>
         </button>
         </Link>
         </>

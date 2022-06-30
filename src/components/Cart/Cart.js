@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
-
+import { addDoc, collection, getFirestore} from 'firebase/firestore'
 
 
 export const BotonBorrar = ({props})=>{
@@ -15,8 +15,8 @@ export const numeroDeArticulos = (cart)=>{
     if (cart.length != 0){
         const mapeo = cart.map(item => (item.cant))
         const reduc = mapeo.reduce((valorI, valorA) => valorI + valorA)
-            console.log("mapeo cart cantidad", mapeo)
-        console.log("reduce de cart", reduc)
+        //     console.log("mapeo cart cantidad", mapeo)
+        // console.log("reduce de cart", reduc)
     
     
         return reduc;
@@ -25,26 +25,52 @@ export const numeroDeArticulos = (cart)=>{
 }
 
 const Cart =() =>{
-    const { cart, vaciarCarrito} = useCartContext()
+    const { cartList, vaciarCarrito, removeItem, precioTotal} = useCartContext()
+
+    let orden ={ }
+
+    const crearOrden =(e)=>{
+    orden .buyer = {name:'asd', email:'a@gmail.com', phone:'12341234'}
+    orden.total = 500
+
+    orden.items = cartList.map( cartItem =>{
+        const id = cartItem.id
+        const nombre = cartItem.nombre
+        const precio = cartItem.precio * cartItem.cant
+        
+        return {id,nombre,precio}
+    })
+       const db = getFirestore()
+       const orderCollection = collection(db,'orders')
+       addDoc (orderCollection,orden)
+       .then(resp => console.log(resp))
+    }
 
 
+    // console.log(cartList.length)
 
-    console.log(cart.length)
 
     const CartArray =()=>{
 
-        return (<ul>
-        {cart.map(item => 
-     
+
+        return (
+        
+        <>
+        {cartList.map(item => 
+     <div>
      <ul key ={item.id}> 
     
-         {/* <p>Producto Nº{}</p> */}
+
          <li> Articulo: {item.nombre}</li>
          <li>Precio Unitario:{item.precio}</li>
          <li>Cantidad: {item.cant}</li>
          <li>--------------------------</li>
-     </ul>)}
-        </ul>)
+
+        </ul>
+        <button onClick={()=>removeItem(item)}>Eliminar item </button>
+        </div>
+        )}
+       </> )
     }
 
     const Conditionalreturn1 =()=>{
@@ -60,9 +86,11 @@ const Cart =() =>{
         return(
             <>
             <CartArray />
-            <div> Tienes actualmente {numeroDeArticulos(cart)} articulos en tu carro.</div>
+            <div> Tienes actualmente {numeroDeArticulos(cartList)} articulos en tu carro.</div>
+            <div> El costo total de los productos seleccionados asciende a la suma de USD$ {precioTotal(cartList)}</div>
             <button onClick={vaciarCarrito} >Vaciar Carrito</button>
-            <button >Continuar con la Compra</button>
+            <button onClick={crearOrden}>Continuar con la Compra</button>
+            {/* <button onClick={()=>precioTotal(cartList)}>BOTON DE PRUEBA DE FUNCION</button>    */}
             </>
         )
     }
@@ -71,7 +99,7 @@ const Cart =() =>{
     return (
         <>
         <div>
-        { cart.length ===0 ?
+        { cartList.length ===0 ?
         <Conditionalreturn1 />
         :
         <Conditionalreturn2 />
@@ -79,7 +107,7 @@ const Cart =() =>{
         
         </div>
 
-        
+ 
 
 
 

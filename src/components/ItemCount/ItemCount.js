@@ -63,7 +63,7 @@ function ItemCount({stock, initial, onAdd}) {
                 <BotonCarrito/>
             }
         </div>
-        {console.log(checker)}
+        {/* {console.log(checker)} */}
         
         </>
     )
