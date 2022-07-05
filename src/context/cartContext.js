@@ -8,7 +8,7 @@ export const CartContextProvider = ({children}) => {
 
     const [cartList, setCart] = useState ([])
 
-
+    
 
     const addToCart = (item) =>{
         

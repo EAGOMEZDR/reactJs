@@ -1,12 +1,15 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 import { addDoc, collection, getFirestore} from 'firebase/firestore'
+import { useState } from "react";
+import { Checkout } from "../Checkout/Checkout";
+
 
 
 export const BotonBorrar = ({props})=>{
     return <button onClick={props}>BORRAR TODO</button>
 }
+
 
 
 
@@ -24,26 +27,34 @@ export const numeroDeArticulos = (cart)=>{
     
 }
 
+
 const Cart =() =>{
     const { cartList, vaciarCarrito, removeItem, precioTotal} = useCartContext()
+    
 
-    let orden ={ }
 
     const crearOrden =(e)=>{
-    orden .buyer = {name:'asd', email:'a@gmail.com', phone:'12341234'}
-    orden.total = 500
+        // e.preventDefault()
+        let orden ={}
 
-    orden.items = cartList.map( cartItem =>{
-        const id = cartItem.id
-        const nombre = cartItem.nombre
-        const precio = cartItem.precio * cartItem.cant
+
+        orden.buyer = {name:'asd', email:'a@gmail.com', phone:'12341234'}
+        orden.total = precioTotal(cartList)
+
+        orden.items = cartList.map( cartItem =>{
+            const id = cartItem.id
+            const nombre = cartItem.nombre
+            const precio = cartItem.precio * cartItem.cant
+        
         
         return {id,nombre,precio}
-    })
+        })
+
        const db = getFirestore()
        const orderCollection = collection(db,'orders')
        addDoc (orderCollection,orden)
        .then(resp => console.log(resp))
+       
     }
 
 
@@ -89,7 +100,7 @@ const Cart =() =>{
             <div> Tienes actualmente {numeroDeArticulos(cartList)} articulos en tu carro.</div>
             <div> El costo total de los productos seleccionados asciende a la suma de USD$ {precioTotal(cartList)}</div>
             <button onClick={vaciarCarrito} >Vaciar Carrito</button>
-            <button onClick={crearOrden}>Continuar con la Compra</button>
+            <button onClick={()=> {crearOrden(cartList)}}>Continuar con la Compra</button>
             {/* <button onClick={()=>precioTotal(cartList)}>BOTON DE PRUEBA DE FUNCION</button>    */}
             </>
         )
@@ -104,15 +115,7 @@ const Cart =() =>{
         :
         <Conditionalreturn2 />
         }
-        
         </div>
-
- 
-
-
-
-
-
         </>
     )
 }
