@@ -29,7 +29,7 @@ export const CartContextProvider = ({children}) => {
         
     }
 
-    const precioTotal =({precio,cant})=>{
+    const precioTotal =()=>{
         const calcularPrecio1 = cartList.map(item => (item.precio*item.cant))
         const calcularPrecio2 = calcularPrecio1.reduce((valorA, valorN) => valorA + valorN)
         return calcularPrecio2

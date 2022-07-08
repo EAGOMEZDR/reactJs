@@ -17,15 +17,6 @@ const ItemDetailContainer = () => {
     getDoc(queryItem) 
     .then(resp =>setProducto( {id:resp.id, ...resp.data()}))
 
-
-
-    // useEffect(() => {
-    //     ItemList(id)
-    //         .then((resp) => setProducto(resp)) 
-    //         .catch(err => console.log(err))            
-    // }, [])
-    
-
   
     return <ItemDetail productos={producto} />
 }

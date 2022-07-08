@@ -44,3 +44,13 @@
   display:flex;
   flex-direction: row;
 }
+
+.contenedorCheckout{
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.contenedorCheckout div{
+  margin:3vh;
+
+}
