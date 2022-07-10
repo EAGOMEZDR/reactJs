@@ -8,6 +8,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import  Cart  from './components/Cart/Cart';
 import { CartContextProvider } from './context/cartContext';
 import { Checkout } from './components/Checkout/Checkout';
+import Pagar from './components/Pagar/Pagar';
 
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route  path="/detalle/:id" element={<ItemDetailContainer/>} />
         <Route  path='/cart' element={ <Cart />} />
         <Route path='/checkout' element ={<Checkout/>} />
+        <Route path='/pagar' element={<Pagar/>}/>
         {/* <Route  path='/cart' element={ <ItemCount stock={15} initial={1} onAdd={"0"} />} /> */}
         {/* <Route  path='*' element={<Navigate to="/" />} /> */}
       </Routes>

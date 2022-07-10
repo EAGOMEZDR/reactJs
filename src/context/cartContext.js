@@ -23,10 +23,7 @@ export const CartContextProvider = ({children}) => {
 
     const removeItem =({id})=>{
         const eliminar = setCart(cartList.filter(item => item.id !== id))
-        //  console.log("cartList de context", cartList)
-        // console.log("id de context",id)
-        // console.log("eliminar:", eliminar)
-        
+       
     }
 
     const precioTotal =()=>{

@@ -1,14 +1,16 @@
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
-import { ItemList } from '../ItemList/ItemList';
+
 
 
 
 const ItemDetailContainer = () => {
 
     const [producto, setProducto] = useState([])
+    const [cargando, setCargando]=useState(true)
+
     
     const {id} = useParams()
 
@@ -16,9 +18,19 @@ const ItemDetailContainer = () => {
     const queryItem = doc(db, 'productos', id)
     getDoc(queryItem) 
     .then(resp =>setProducto( {id:resp.id, ...resp.data()}))
+    .finally(()=> setCargando(false))
+
 
   
-    return <ItemDetail productos={producto} />
+    return (
+        <>
+        {cargando?
+        <div>Cargando contenido....</div>
+        :
+        <ItemDetail productos={producto}/>
+        }
+        </>
+    )
 }
 export default ItemDetailContainer;
     
