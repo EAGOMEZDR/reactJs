@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {Link, useParams} from 'react-router-dom'
 import { collection, getDocs, getFirestore, query, where} from 'firebase/firestore'
-import {Button, Card, ListGroup} from 'react-bootstrap'
+import {Card, ListGroup} from 'react-bootstrap'
 
 const ItemListContainer = () => {
 
@@ -10,7 +10,6 @@ const ItemListContainer = () => {
 
     const {categoriaId} = useParams()
 
-    console.log("categoria Id: ", categoriaId)
 
     useEffect(()=>{
 
@@ -23,13 +22,13 @@ const ItemListContainer = () => {
         const queryCollectionFilter = query(queryCollection, where('marca', '==', categoriaId))
         getDocs(queryCollectionFilter)
         .then(data => setProductos (data.docs.map(item => ({id: item.id, ...item.data()}) )))
-        .catch(err =>console.log(err))
+        .catch(err =>"")
         .finally(()=> setCargando(false))
 
         }else{
         getDocs(queryCollection)
         .then(data => setProductos (data.docs.map(item => ({id: item.id, ...item.data()}) )))
-        .catch(err =>console.log(err))
+        .catch(err =>"")
         .finally(()=> setCargando(false))
         }
 

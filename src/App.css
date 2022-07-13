@@ -122,6 +122,17 @@ align-items: center;
   display: flex;
 }
 
+.costoTotal{
+  width: 50vh;
+  height:10vh;
+  margin:2vh;
+  border:1px solid black;
+  border-radius: 25px;
+  text-align: center;
+  padding: 2vh;
+  
+}
+
 /* ---------------------------------------------------------------------------- */
 
 /* PAGO */

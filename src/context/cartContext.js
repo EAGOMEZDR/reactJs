@@ -27,19 +27,20 @@ export const CartContextProvider = ({children}) => {
     }
 
     const precioTotal =()=>{
-        const calcularPrecio1 = cartList.map(item => (item.precio*item.cant))
-        const calcularPrecio2 = calcularPrecio1.reduce((valorA, valorN) => valorA + valorN)
+        // const calcularPrecio1 = cartList.map(item => (item.precio*item.cant))
+        // const calcularPrecio2 = calcularPrecio1.reduce((valorA, valorN) => valorA + valorN)
+        const calcularPrecio2= cartList.reduce((acum, item) => acum + item.cant * item.precio, 0 )
         return calcularPrecio2
 
     }
 
 
     const isInCart=(id)=>{
-        console.log("esto es id: " ,id)
         return cartList.some(item => item.id === id.id)
     }
 
     const vaciarCarrito =() =>{
+        
         setCart ([])
     }
 

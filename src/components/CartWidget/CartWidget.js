@@ -6,11 +6,10 @@ import {numeroDeArticulos} from '../Cart/Cart'
 function CartWidget (){
     const { cartList} = useCartContext()
 
-    // console.log(numeroDeArticulos)
     return(
         <>
         <Link to="/cart">
-        <button className="carritoHolder" onClick={()=>console.log("ir a cart")}>
+        <button className="carritoHolder" onClick={()=>""}>
          <img src={carritoDeCompras} className="carrito" alt="#" />
          <div>{numeroDeArticulos(cartList)}</div>
         </button>
