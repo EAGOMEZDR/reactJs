@@ -6,6 +6,7 @@ import ItemDetail from '../ItemDetail/ItemDetail';
 
 
 
+
 const ItemDetailContainer = () => {
 
     const [producto, setProducto] = useState([])

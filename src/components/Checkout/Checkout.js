@@ -1,7 +1,9 @@
-import { addDoc, collection, getFirestore, query, where, getDocs, getDoc, doc } from "firebase/firestore"
+import { addDoc, collection, getFirestore, getDoc, doc } from "firebase/firestore"
 import { useState } from "react"
 import { useCartContext } from "../../context/cartContext"
 import { Link } from 'react-router-dom';
+import { Card } from "react-bootstrap";
+
 
 
 
@@ -17,11 +19,10 @@ export const Checkout=()=>{
     const[orden, setOrden]= useState()
     const[identi,setIdenti]= useState()
 
-
+    const[generarOrden,setGenerarOrden]=useState("Generar Orden")
 
     const crearOrden =(e)=>{
         e.preventDefault()
-        console.log("funciono el crear orden")
         let ordenes ={}
     
         ordenes.buyer = {names:names, email:email, phone:phone}
@@ -30,11 +31,12 @@ export const Checkout=()=>{
         ordenes.items = cartList.map( cartItem =>{
             const id = cartItem.id
             const nombre = cartItem.nombre
+            const foto = cartItem.foto
             const cantidad=cartItem.cant
             const precioU=cartItem.precio
             const precio = cartItem.precio * cartItem.cant            
             
-        return {id,nombre,cantidad,precioU, precio}
+        return {id,nombre,foto,cantidad,precioU, precio}
         })
     
         const db = getFirestore()
@@ -42,11 +44,14 @@ export const Checkout=()=>{
         addDoc (orderCollection,ordenes)
         .then(resp => ordenManager(resp.id))
 
-
+        setGenerarOrden("Estamos generando su orden. Espere por favor.")
         
         setTimeout(()=>{
             setChecker(false)
-
+            // vaciarCarrito()
+            // setMail()
+            // setPhone()
+            // setName()
         }, 5000);
         clearTimeout()
 
@@ -67,43 +72,53 @@ export const Checkout=()=>{
         // .then(resp =>setOrden(resp.data()))
     }   
 
-    setTimeout(()=>{
-        console.log("identi ", identi)
-
-    }, 2000);
-    clearTimeout()
-
     return(
         <>
 
             {checker?
-                <form onSubmit={crearOrden}>
-                <input type="text" className="form-control"  value={phone} onChange={(e)=>{setPhone(e.target.value)}} placeholder="telefono" maxLength="10"/>
-                <input type="text" className="form-control"  value={names} onChange={(e)=>{setName(e.target.value)}} placeholder="nombre" maxLength="10"/>
-                <input type="text" className="form-control"  value={email} onChange={(e)=>{setMail(e.target.value)}} placeholder="mail" maxLength="10"/>
-                <button type="submit">Boton Submit</button>
-                </form>
+                <form className="formularioCheckout" onSubmit={crearOrden}>
+                <div>Por favor complete los datos para continuar con la compra</div>
+
+                <label for="telefono">Telefono:</label>
+                <input type="text" name="telefono" className="form-control"  onChange={(e)=>{setPhone(e.target.value)}} placeholder="Numero de telefono sin guiones" pattern="[0-9]+" minLength="8" maxLength="11" required/>
+
+                <label for="nombre">Nombre:</label>                
+                <input type="text" className="form-control" name="nombre" onChange={(e)=>{setName(e.target.value)}} placeholder="Ingrese su nombre completo" minLength="6" maxLength="30"/>
+
+                <label for="email">E-mail:</label>
+                <input type="text" name="email"className="form-control" onChange={(e)=>{setMail(e.target.value)}} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Ingrese su mail => xxxxx@xxxxx.xxx" minLength="6" maxLength="25"/>
+                
+                <button type="submit" className="btn btn-success btn-lg">{generarOrden}</button>
+                </form>                
             :
             <>
-            <div>
-                esto es una prueba
-
-                <h2>Su orden de compra fue generada exitosamente ID:<p className="idOrden">{identi}</p>.</h2>
+            <div className="ordenCompra">
+                <div className="ordenCompraID">
+                <h2>Su orden de compra fue generada exitosamente ID:<p className="idOrden">{identi}.</p></h2>
                 <h2>Sus datos son:</h2>
                 <h2>Nombre:{orden.buyer.names}</h2>
-                <h2>Nombre:{orden.buyer.phone}</h2>
-                <h2>Nombre:{orden.buyer.email}</h2>
-                {orden.items.map(item=><ul key={item.id}>
-                    <li>{item.nombre}</li>
-                    <li>{item.cantidad}</li>
-                    <li>{item.precioU}</li>
-                    <li>{item.precio}</li>
-                    <li>------o-------</li>
-                </ul>)} 
+                <h2>Telefono:{orden.buyer.phone}</h2>
+                <h2>Email:{orden.buyer.email}</h2>
+                </div>
+                <div className="containerMapCheckout">
+                {orden.items.map(item=>
+                <div key ={item.id} className="card text-right cardsCheckout" style={{ width: '18rem' }}>
+                <div className="card-body">
+                <Card.Img variant="top" src={item.foto} />
+                <h5 className="card-title">{item.nombre}</h5>
+                <p className="card-text"/>
+                <li>Cantidad:{item.cantidad} unidades.</li>
+                <li>Precio Unitario:Usd${item.precioU}.</li>
+                <li>Precio por {item.cantidad} unidades: Usd${item.precio}.</li>
 
+                </div>    
+                </div>)}
+                </div>
 
-            </div>
-            <Link to="/pagar"><button>PAGAR</button></Link>
+                <div className="botonPagoCheckout">
+                <Link to="/pagar"><button className="btn btn-success btn-lg">PAGAR</button></Link>
+                </div>
+            </div>    
             </>    
             }
 

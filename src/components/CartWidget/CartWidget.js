@@ -15,6 +15,7 @@ function CartWidget (){
          <div>{numeroDeArticulos(cartList)}</div>
         </button>
         </Link>
+
         </>
     )
 }

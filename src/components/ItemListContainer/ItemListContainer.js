@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import {Link, useParams} from 'react-router-dom'
 import { collection, getDocs, getFirestore, query, where} from 'firebase/firestore'
+import {Button, Card, ListGroup} from 'react-bootstrap'
 
 const ItemListContainer = () => {
 
@@ -34,40 +35,35 @@ const ItemListContainer = () => {
 
     }, [categoriaId])
 
-    // console.log(productos)
-
-    // useEffect(()=>{
-    //     if (categoriaId){
-    //         ItemList()
-    //         .then((resp) =>{
-    //             setProductos(resp.filter(productos => productos.marca === categoriaId))
-    //             console.log(productos + "asd")
-    //             setCargando(false)
-    //         })
-    //         .catch(err => console.log("error"))
-    //         .finally(()=> console.log())            
-    //     }else {
-    //         ItemList()
-    //         .then((resp) =>{
-    //             setProductos(resp)
-    //             setCargando(false)
-    //         })
-    //         .catch(err => console.log("error"))
-    //         .finally(()=> console.log())
-    //     }
-
-
-    // }, [categoriaId])
-
-
     return (
         <>
 
-        <div className="main">
+        <div>
           {cargando ? 
             <h2>Espere mientras se carga el contenido......</h2> 
             :  
-            <div className="cuadrados">{productos.map(productos => <div className="cuadradito" key={productos.id}> <li> Modelo: {productos.nombre}. </li><li>Descripcion: {productos.descripcion}. </li><li> Stock: {productos.stock}. </li><li> <Link to={`/detalle/${productos.id}`}><button>Detalle</button></Link></li></div>)}</div>
+            <div className='containerHome'>
+            {productos.map(productos => 
+            <div key={productos.id}>
+            <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={productos.foto} />
+            <Card.Body>
+                <Card.Title>{productos.nombre}</Card.Title>
+                <Card.Text>
+                {productos.descripcion}
+                </Card.Text>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+                <ListGroup.Item>Stock: {productos.stock} unidades.</ListGroup.Item>
+                <ListGroup.Item>Precio por unidad: Usd${productos.precio}.</ListGroup.Item>
+            </ListGroup>
+            <Card.Body>
+                <Card.Link className="d-flex justify-content-center btn btn-info btn-lg border border-dark"><Link to={`/detalle/${productos.id}`}>
+                    Detalle</Link></Card.Link>
+            </Card.Body>
+            </Card>
+            </div>)}
+            </div>
         }
 
         </div>

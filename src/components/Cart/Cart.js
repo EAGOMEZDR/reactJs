@@ -1,3 +1,4 @@
+import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCartContext } from "../../context/cartContext";
 
@@ -15,10 +16,7 @@ export const numeroDeArticulos = (cart)=>{
     
     if (cart.length != 0){
         const mapeo = cart.map(item => (item.cant))
-        const reduc = mapeo.reduce((valorI, valorA) => valorI + valorA)
-        //     console.log("mapeo cart cantidad", mapeo)
-        // console.log("reduce de cart", reduc)
-    
+        const reduc = mapeo.reduce((valorI, valorA) => valorI + valorA)  
     
         return reduc;
     }
@@ -29,64 +27,39 @@ export const numeroDeArticulos = (cart)=>{
 const Cart =() =>{
     const { cartList, vaciarCarrito, removeItem, precioTotal} = useCartContext()
     
-
-
-    // const crearOrden =(e)=>{
-    //     // e.preventDefault()
-    //     let orden ={}
-
-
-    //     orden.buyer = {name:'asd', email:'a@gmail.com', phone:'12341234'}
-    //     orden.total = precioTotal()
-
-    //     orden.items = cartList.map( cartItem =>{
-    //         const id = cartItem.id
-    //         const nombre = cartItem.nombre
-    //         const precio = cartItem.precio * cartItem.cant
-        
-        
-    //     return {id,nombre,precio}
-    //     })
-
-    //    const db = getFirestore()
-    //    const orderCollection = collection(db,'orders')
-    //    addDoc (orderCollection,orden)
-    //    .then(resp => console.log(resp))
-       
-    // }
-
-
-    // console.log(cartList.length)
-
-
     const CartArray =()=>{
 
 
         return (
         
         <>
-        {cartList.map(item => 
-     <div>
-     <ul key ={item.id}> 
-    
+        <div className="itemsCarrito">
+    {cartList.map(item => 
+     <div key ={item.id} className="card text-center" style={{ width: '18rem' }}>
+     <div className="card-body">
+        <Card.Img variant="top" src={item.foto} />
+       <h5 className="card-title">{item.nombre}</h5>
+       <p className="card-text">
+        <li>{item.descripcion}</li>
+        <li>Precio Unitario:{item.precio}</li>
+        <li>Cantidad: {item.cant}</li></p>
+        <button className="btn btn-primary btn-eliminar" onClick={()=>removeItem(item)}>Eliminar item </button>
 
-         <li> Articulo: {item.nombre}</li>
-         <li>Precio Unitario:{item.precio}</li>
-         <li>Cantidad: {item.cant}</li>
-         <li>--------------------------</li>
+     </div>
+     </div>)}
+     </div>
+    </>)
 
-        </ul>
-        <button onClick={()=>removeItem(item)}>Eliminar item </button>
-        </div>
-        )}
-       </> )
     }
 
     const Conditionalreturn1 =()=>{
         return(
         <>
-        <div>El carrito esta vacio</div>
-        <Link to="/"><button>Volver a la tienda</button></Link>
+        <div className="contenedorCarrito">
+        <div className="textoCarritoVacio">Tu carrito esta vacio</div>
+        <div className="caritaTriste">=(</div>
+        <Link to="/"><button className="botonCarritoVacio d-flex justify-content-center btn btn-info btn-lg border border-dark">Volver a la tienda</button></Link>
+        </div>
         </>
         )
     }
@@ -94,13 +67,15 @@ const Cart =() =>{
     const Conditionalreturn2 =()=>{
         return(
             <>
+            <div className="contenedorCarrito">
             <CartArray />
             <div> Tienes actualmente {numeroDeArticulos(cartList)} articulos en tu carro.</div>
             <div> El costo total de los productos seleccionados asciende a la suma de USD$ {precioTotal()}</div>
-            <button onClick={vaciarCarrito} >Vaciar Carrito</button>
-            <Link to='/checkout'><button>To Checkout</button></Link>
-            {/* <button onClick={()=> {crearOrden(cartList)}}>Continuar con la Compra</button> */}
-            {/* <button onClick={()=>precioTotal(cartList)}>BOTON DE PRUEBA DE FUNCION</button>    */}
+            <div className="d-flex justify-content-center">
+            <button className="d-flex justify-content-center btn btn-warning btn-lg border border-dark" onClick={vaciarCarrito} >Vaciar Carrito</button>
+            <Link to='/checkout'><button className="d-flex justify-content-center btn btn-success btn-lg border border-dark">To Checkout</button></Link>
+            </div>
+            </div>
             </>
         )
     }

@@ -1,56 +1,140 @@
-.navlink{
-  display:block;
+*{
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
   text-align: center;
-  background-color: bisque;
-  padding:0 2vh;
-  margin:0 2vh;  
 }
 
-.titulo{
-  background-color: aquamarine;
-  padding:2vh;
-  margin:2vh;
+h1,h2,h3,h4,h5,h6{
+  text-align: center;
 }
 
 
+/* ItemList Container */
+
+.containerHome{
+  display:flex;
+  margin: 3vh;
+  justify-content: space-evenly;
+}
+/* ----------------------------------------------------------------- */
+
+/* Cart Widget */
 .carritoHolder{
+  display:flex;
   background-color: rgb(33, 153, 33);
   height: 5vh;
   width: 6vh;
   position:absolute;
   right:3vh;
-  top:4vh;
+  top:0.5vh;
 }
 
 .carrito{
   height: 3vh;
   width: 3vh;
+  margin:auto;
+}
+
+/* --------------------------------------------------------------------------- */
+
+/* ItemCount */
+.quitarAgregar{
+  display:block;
+}
+
+.contadorItem{
+  font-size: 7vh;
+  font-weight: bold;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+/* Item Detail */
+
+.contenedorDetail{
+margin:4vh;
+display: flex;
+justify-content: center;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* Carrito */
+.contenedorCarrito{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
   margin:0 auto;
 }
 
-.cuadradito{
-  height: 25vh;
-  width: 25vh;
-  border: 1px solid black;
-  margin: 3vh;
+.textoCarritoVacio{
+  font-size: 13vh;
+}
+.caritaTriste{
+  width: 50vh;
+  height: 50vh;
+  display:block;
+  font-size: 28vh;
+  padding:3vh 4vh;
+  transform: rotate(90deg)
+}
+.botonCarritoVacio{
+  display:block;
 }
 
-.cuadradito li{
-  list-style: none;
-  margin: 2vh 2vh;
+.itemsCarrito{
+  display:flex;
+  margin-top:2vh;
+}
+/* ---------------------------------------------------------------------------- */
+
+
+
+/* Checkout */
+
+.formularioCheckout{
+  display: flex;
+  flex-direction: column;
+  width: 80vh;
+  margin:0 auto;
+  font-size: 2vh;
+  padding:2vh;
 }
 
-.cuadrados{
+.formularioCheckout > *{
+  margin:2vh;
+}
+
+.ordenCompra{
   display:flex;
   flex-direction: row;
-}
-
-.contenedorCheckout{
-  display:flex;
   justify-content: space-evenly;
 }
 
-.contenedorCheckout div{
-  margin:3vh;
-
+.botonPagoCheckout{
+align-items: center;
 }
+
+.containerMapCheckout{
+  display: flex;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+/* PAGO */
+
+.pago{
+  display: flex;
+  justify-self: center;
+  align-self: center;
+  font-size: 12vh;
+  margin:8vh;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+
+

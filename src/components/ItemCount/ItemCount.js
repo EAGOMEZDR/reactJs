@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import {Button} from 'react-bootstrap';
 
 
 
@@ -8,28 +8,14 @@ const BotonCarrito =()=>{
     return (
         <>
         <Link to='/cart'>
-            <button >
-                IR AL CARRITO
-            </button>
+        <Button variant="success">IR AL CARRITO</Button>
         </Link>
                 <Link to='/'>
-                <button >
-                    SEGUIR COMPRANDO
-                </button>
+                <Button variant="warning">SEGUIR COMPRANDO</Button>
             </Link>
         </>
     )
 }
-
-// const BotonComprar =({props})=>{
-//     console.log("props" + props)
-//     return(
-//     <button onClick={props} >AGREGAR AL CARRO</button>
-
-//     )
-// }
-
-
 
 function ItemCount({stock, initial, onAdd}) {
 
@@ -52,19 +38,20 @@ function ItemCount({stock, initial, onAdd}) {
     return(
         <>
         <div>
-            <h2>{count}</h2>
-            <button onClick={agregar}>+</button>
-            <button onClick={quitar}>-</button>            
+            <h2 className='contadorItem d-flex justify-content-center'>{count}</h2>
+            <div className='quitarAgregar d-flex justify-content-center btn btn-lg'>
+            <Button onClick={quitar} className="btn btn-lg" variant="secondary">-</Button>   
+            <Button onClick={agregar} className="btn btn-lg" variant="info">+</Button>
+            </div>
             
             {
                 checker=== true ?
-                <button onClick={add}>agregar al carrito</button>
+                <Button className='btn btn-info btn-lg border border-dark'onClick={add} variant="primary">Agregar al carrito</Button>
                 :
                 <BotonCarrito/>
             }
         </div>
-        {/* {console.log(checker)} */}
-        
+       
         </>
     )
 }

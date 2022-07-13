@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext} from "react"
 import { CartContext } from "../../context/cartContext"
 import ItemCount from "../ItemCount/ItemCount"
-
+import {Card, ListGroup} from 'react-bootstrap'
 
 
 const ItemDetail = ({productos}) => {
@@ -12,24 +12,31 @@ const ItemDetail = ({productos}) => {
 
     const onAdd = (cantidad) =>{
         addToCart({...productos, cant: cantidad})
-        // console.log(cantidad)
     }
 
 
-
-
-
-    // console.log(cart)
     return (
         <>
-
-        <div>
-        <h2>Nombre: {productos.nombre}</h2>
-        <h3>Precio: {productos.precio}</h3>
-        <h3>Stock: {productos.stock}</h3>
+        <div className="contenedorDetail">
+        <div className="contenedorDetail__Card">
+        <Card style={{ width: '25rem' }}>
+        <Card.Img variant="top" src={productos.foto} />
+        <Card.Body>
+        <Card.Title>{productos.nombre}</Card.Title>
+        <Card.Text>
+          {productos.descripcion}        
+        </Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+        <ListGroup.Item>Stock: {productos.stock} unidades.</ListGroup.Item>
+        <ListGroup.Item>Precio por unidad: Usd${productos.precio}.</ListGroup.Item>
+        </ListGroup> 
+        </Card>
+        </div>
+        <div className="contenedorDetail__Add">
         <ItemCount stock={productos.stock} initial={1} onAdd={onAdd} />
         </div>
-
+        </div>
 
         </>
         
