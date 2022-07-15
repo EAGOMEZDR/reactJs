@@ -18,24 +18,22 @@ const ItemDetail = ({productos}) => {
     return (
         <>
         <div className="contenedorDetail">
-        <div className="contenedorDetail__Card">
-        <Card style={{ width: '25rem' }}>
-        <Card.Img variant="top" src={productos.foto} />
-        <Card.Body>
-        <Card.Title>{productos.nombre}</Card.Title>
-        <Card.Text>
-          {productos.descripcion}        
-        </Card.Text>
-        </Card.Body>
-        <ListGroup className="list-group-flush">
-        <ListGroup.Item>Stock: {productos.stock} unidades.</ListGroup.Item>
-        <ListGroup.Item>Precio por unidad: Usd${productos.precio}.</ListGroup.Item>
-        </ListGroup> 
-        </Card>
-        </div>
-        <div className="contenedorDetail__Add">
-        <ItemCount stock={productos.stock} initial={1} onAdd={onAdd} />
-        </div>
+            <div className="contenedorDetail__Card">
+                <Card style={{ width: '25rem' }}>
+                    <Card.Img variant="top" src={productos.foto} />
+                    <Card.Body>
+                        <Card.Title>{productos.nombre}</Card.Title>
+                        <Card.Text>{productos.descripcion}</Card.Text>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                        <ListGroup.Item>Stock: {productos.stock} unidades.</ListGroup.Item>
+                        <ListGroup.Item>Precio por unidad: Usd${productos.precio}.</ListGroup.Item>
+                    </ListGroup> 
+                </Card>
+            </div>
+            <div className="contenedorDetail__Add">
+                <ItemCount stock={productos.stock} initial={1} onAdd={onAdd} />
+            </div>
         </div>
 
         </>

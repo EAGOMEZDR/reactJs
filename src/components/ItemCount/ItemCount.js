@@ -40,8 +40,8 @@ function ItemCount({stock, initial, onAdd}) {
         <div>
             <h2 className='contadorItem d-flex justify-content-center'>{count}</h2>
             <div className='quitarAgregar d-flex justify-content-center btn btn-lg'>
-            <Button onClick={quitar} className="btn btn-lg" variant="secondary">-</Button>   
-            <Button onClick={agregar} className="btn btn-lg" variant="info">+</Button>
+                <Button onClick={quitar} className="btn btn-lg" variant="secondary">-</Button>   
+                <Button onClick={agregar} className="btn btn-lg" variant="info">+</Button>
             </div>
             
             {

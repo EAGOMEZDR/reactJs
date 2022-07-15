@@ -21,14 +21,12 @@ export const CartContextProvider = ({children}) => {
  
     }
 
-    const removeItem =({id})=>{
+    const removerItem =({id})=>{
         const eliminar = setCart(cartList.filter(item => item.id !== id))
        
     }
 
     const precioTotal =()=>{
-        // const calcularPrecio1 = cartList.map(item => (item.precio*item.cant))
-        // const calcularPrecio2 = calcularPrecio1.reduce((valorA, valorN) => valorA + valorN)
         const calcularPrecio2= cartList.reduce((acum, item) => acum + item.cant * item.precio, 0 )
         return calcularPrecio2
 
@@ -51,7 +49,7 @@ export const CartContextProvider = ({children}) => {
             cartList,
             addToCart,
             vaciarCarrito,
-            removeItem,
+            removerItem,
             precioTotal,
 
             

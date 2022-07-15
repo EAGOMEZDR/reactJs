@@ -34,36 +34,32 @@ export const Checkout=()=>{
             setFecha(Date()) 
     
             ordenes.items = cartList.map( cartItem =>{
-            const id = cartItem.id
-            const nombre = cartItem.nombre
-            const foto = cartItem.foto
-            const cantidad=cartItem.cant
-            const precioU=cartItem.precio
-            const precio = cartItem.precio * cartItem.cant
+                const id = cartItem.id
+                const nombre = cartItem.nombre
+                const foto = cartItem.foto
+                const cantidad=cartItem.cant
+                const precioU=cartItem.precio
+                const precio = cartItem.precio * cartItem.cant
                       
             
-        return {id,nombre,foto,cantidad,precioU, precio}
-        })
+                return {id,nombre,foto,cantidad,precioU, precio}
+            })
     
-        const db = getFirestore()
-        const orderCollection = collection(db,'orders')
-        addDoc (orderCollection,ordenes)
-        .then(resp => ordenManager(resp.id))
+            const db = getFirestore()
+            const orderCollection = collection(db,'orders')
+            addDoc (orderCollection,ordenes)
+                .then(resp => ordenManager(resp.id))
 
-        setGenerarOrden("Estamos generando su orden. Espere por favor.")
+            setGenerarOrden("Estamos generando su orden. Espere por favor.")
         
-        setTimeout(()=>{
-            setChecker(false)
-  
-
-        }, 5000);
-        clearTimeout()
+            setTimeout(()=>{
+                setChecker(false)
+            }, 5000);
+            clearTimeout()
 
         } else{
-                setTextoCheck("Debe reingresar su mail correctamente.") 
-
+            setTextoCheck("Debe reingresar su mail correctamente.") 
         }
-
     }
 
     const ordenManager=(id)=>{
@@ -74,7 +70,7 @@ export const Checkout=()=>{
         
         const queryItem = doc(db, 'orders', id)
         getDoc(queryItem) 
-        .then(resp=>setOrden(resp.data()))
+            .then(resp=>setOrden(resp.data()))
 
     }   
 
@@ -105,30 +101,31 @@ export const Checkout=()=>{
             <>
             <div className="ordenCompra">
                 <div className="ordenCompraID">
-                <h2>Su orden de compra fue generada exitosamente ID:<p className="idOrden">{identi}.</p></h2>
-                <h2>Fecha:{fecha}</h2>
-                <h2>Nombre:{orden.buyer.names}</h2>
-                <h2>Telefono:{orden.buyer.phone}</h2>
-                <h2>Email:{orden.buyer.email}</h2>
+                    <h2>Su orden de compra fue generada exitosamente ID:<p className="idOrden">{identi}.</p></h2>
+                    <h2>Fecha:{fecha}</h2>
+                    <h2>Nombre:{orden.buyer.names}</h2>
+                    <h2>Telefono:{orden.buyer.phone}</h2>
+                    <h2>Email:{orden.buyer.email}</h2>
                 </div>
-                <div className="containerMapCheckout">
-                {orden.items.map(item=>
-                <div key ={item.id} className="card text-right cardsCheckout" style={{ width: '18rem' }}>
-                <div className="card-body">
-                <Card.Img variant="top" src={item.foto} />
-                <h5 className="card-title">{item.nombre}</h5>
-                <p className="card-text"/>
-                <li>Cantidad:{item.cantidad} unidades.</li>
-                <li>Precio Unitario:Usd${item.precioU}.</li>
-                <li>Precio por {item.cantidad} unidades: Usd${item.precio}.</li>
 
-                </div>    
+                <div className="containerMapCheckout">
+                    {orden.items.map(item=>
+                    <div key ={item.id} className="card text-right cardsCheckout" style={{ width: '18rem' }}>
+                    <div className="card-body">
+                        <Card.Img variant="top" src={item.foto} />
+                        <h5 className="card-title">{item.nombre}</h5>
+                        <p className="card-text"/>
+                        <li>Cantidad:{item.cantidad} unidades.</li>
+                        <li>Precio Unitario:Usd${item.precioU}.</li>
+                        <li>Precio por {item.cantidad} unidades: Usd${item.precio}.</li>
+                    </div>    
                 </div>)}
-                </div>
+
+            </div>
                 <p className="costoTotal">El total de tu compra es Usd${precioTotal()}</p>
 
                 <div className="botonPagoCheckout">
-                <Link to="/pagar"><button className="btn btn-success btn-lg" onClick={vaciarCarrito}>REALIZAR COMPRA</button></Link>
+                    <Link to="/pagar"><button className="btn btn-success btn-lg" onClick={vaciarCarrito}>REALIZAR COMPRA</button></Link>
                 </div>
             </div>    
             </>    

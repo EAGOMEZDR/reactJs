@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Proyecto shop en react
+## _Tienda online modelo en ReactJs
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
-## Available Scripts
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
-In the project directory, you can run:
+El presente proyect es una tienda modelo para la venta de bienes hecho en reactjs(en este caso en particular utiliza celulares para su demo)
 
-### `npm start`
+## Caracteristicas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- La posibilidad de utilizar database de Firebase para almacenar productos e informacion de las ordenes.
+- El sitio es dinamico y se ve afectado inmediatamente con el agregado de items para la venta.
+- Cuenta con delays predeterminados para evitar errores por tiempo de respuesta.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+## Dependencias
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+El proyecto utiliza una serie de dependencias para su correcto funcionamiento y dinamica:
 
-### `npm run build`
+- [react-bootstrap]-v.2.4.0 - Diseños predeterminados que resultan vistosos y agilizan el trabajo. (https://react-bootstrap.github.io/)
+- [firebase]-v.9.8.4 - Database que reemplaza backend y permite manejo dinamico de productos.(https://firebase.google.com/)
+- [react-router-dom]-v.6.3.0 - Utilizado para el desplazamiento dentro de la aplicacion.(https://reactrouter.com/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Instalacion
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Para su correcta instalacion solo debe clonar el repositorio master y ejecutar en la terminal de su visual studio code el -npm i
 
-### `npm run eject`
+## Contribuir
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Puede contribuir con el proyecto desde el GITHUB
+https://github.com/EAGOMEZDR/reactJs/tree/master
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Demo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+https://reactGDRCell.netlify.app
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Licencia
 
-## Learn More
+Free software for all.-
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+El presente readme se realizo sobre la base del dispuesto en <https://dillinger.io/>
+[dill]: <https://github.com/joemccann/dillinger>
+   

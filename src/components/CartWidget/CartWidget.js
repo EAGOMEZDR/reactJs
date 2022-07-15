@@ -9,10 +9,10 @@ function CartWidget (){
     return(
         <>
         <Link to="/cart">
-        <button className="carritoHolder" onClick={()=>""}>
-         <img src={carritoDeCompras} className="carrito" alt="#" />
-         <div>{numeroDeArticulos(cartList)}</div>
-        </button>
+            <button className="carritoHolder" onClick={()=>""}>
+                <img src={carritoDeCompras} className="carrito" alt="#" />
+                <div>{numeroDeArticulos(cartList)}</div>
+            </button>
         </Link>
 
         </>
